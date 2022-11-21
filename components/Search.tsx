@@ -81,7 +81,7 @@ const Search = ({
         let formattedTextContent = ''
         let currentTextContent = element.textContent
         for (const match of matches) {
-          const matchPattern = new RegExp(`(${match})`, "g")
+          const matchPattern = new RegExp(`(${match.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "g")
           const substr = currentTextContent.substring(0, currentTextContent.indexOf(match) + match.length)
           currentTextContent = currentTextContent.substring(currentTextContent.indexOf(match) + match.length)
           formattedTextContent += substr.replace(matchPattern, `<span class='bg-yellow'>${match}</span>`)
