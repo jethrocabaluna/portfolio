@@ -78,11 +78,15 @@ const Search = ({
       const pattern = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "gi")
       if (element.textContent) {
         const matches = element.textContent.match(pattern) ?? []
-        let formattedTextContent = element.textContent
+        let formattedTextContent = ''
+        let currentTextContent = element.textContent
         for (const match of matches) {
           const matchPattern = new RegExp(`(${match})`, "g")
-          formattedTextContent = formattedTextContent.replace(matchPattern, `<span class='bg-yellow'>${match}</span>`)
+          const substr = currentTextContent.substring(0, currentTextContent.indexOf(match) + match.length)
+          currentTextContent = currentTextContent.substring(currentTextContent.indexOf(match) + match.length)
+          formattedTextContent += substr.replace(matchPattern, `<span class='bg-yellow'>${match}</span>`)
         }
+        formattedTextContent += currentTextContent
         element.innerHTML = formattedTextContent
       }
     }
