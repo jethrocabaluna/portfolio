@@ -1,26 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  --white: #b9d3f0;
+  --pure-white: #ffffff;
+  --cover-white: #d3e2f0;
+  --paper-white: #cbdef3;
+  --black: #141414;
+  --paper-black: #000000;
+  --paper-line: #7a7a7a;
+  --blue: #213aaa;
+  --yellow: #ece06e;
+  --bookmark-yellow: #a89913;
+  --red: #ad2121;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+html body {
+  color: var(--black);
+  background-color: var(--white);
+  height: 100vh;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+#__next {
+  height: 100%;
+  width: 100%;
 }
 
 * {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.book {
+  background-color: transparent;
+  width: 600px;
+  height: 600px;
+  perspective: 2000px;
+}
+
+.book__page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transform: rotateX(25deg);
+}
+
+.book__page:first-child,
+.book__page:last-child {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flipped {
+  transform: rotateX(25deg) rotateY(-180deg);
+}
+
+.book__page > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.book__page > div:last-child {
+  transform: rotateY(-180deg);
 }
