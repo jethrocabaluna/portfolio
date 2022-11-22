@@ -22,7 +22,6 @@ const garamond = EB_Garamond()
 
 const Book: NextPage = () => {
   const [isMobile, setIsMobile] = useState(false)
-  const [activeSide, setActiveSide] = useState<'left' | 'right'>('right')
   const [page, setPage] = useState(0)
   const [isForward, setIsForward] = useState(true)
   const [isAutoTurning, setIsAutoTurning] = useState(false)
