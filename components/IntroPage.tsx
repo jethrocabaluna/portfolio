@@ -13,7 +13,7 @@ const IntroPage = ({
 }: Props) => {
   return (
     <>
-      <div className="bg-paper-white py-10 px-16 relative">
+      <div className="bg-paper-white py-10 px-16">
         <span className="absolute bottom-full left-2">
           <Bookmark color="blue" title="About Me" go={go} />
         </span>

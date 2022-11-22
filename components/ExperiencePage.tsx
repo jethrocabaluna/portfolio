@@ -37,11 +37,11 @@ const Page = ({
   Bookmark,
 }: PageProps) => {
   return (
-    <div className="bg-paper-white py-8 px-16 relative">
+    <div className="bg-paper-white py-8 px-16">
       {Bookmark}
       <h3 className="text-lg">{title}</h3>
       <h2 className="searchable text-3xl">{content.title}</h2>
-      {content.link ? <Link className="text-blue" href={content.link}>{content.link}</Link> : ''}
+      {content.link ? <Link className="text-blue" href={content.link} target="_blank">{content.link}</Link> : ''}
       {content.subtitle ? <p className="searchable text-base">{content.subtitle}</p> : ''}
       <p className="text-sm">{content.startDate}{content.endDate ? ` — ${content.endDate}` : ''}</p>
       <ul className="list-disc text-left mt-1">

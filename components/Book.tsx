@@ -164,7 +164,7 @@ const Book: NextPage = () => {
             pageComponents.map((BookPage, i) => {
               // ${isForward && page === 2 ? 'z-10' : ''} ${!isForward && page === 2 ? 'z-30' : ''}`}
               const pageClassName = clsx(
-                'book__page',
+                'book__page absolute top-0 left-0 w-full h-full text-center',
                 page > i && 'flipped z-20',
                 page < i - 1 && '-z-10',
                 i !== 0 && i !== pageComponents.length - 1 && 'border-l border-paper-line',

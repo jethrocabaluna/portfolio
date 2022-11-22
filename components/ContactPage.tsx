@@ -11,7 +11,7 @@ const ContactPage = ({
 }: Props) => {
   return (
     <>
-      <div className="bg-paper-white py-10 px-16 relative">
+      <div className="bg-paper-white py-10 px-16">
         <span className="absolute bottom-full right-8">
           <Bookmark color="red" title="Contact" go={go} />
         </span>
@@ -25,7 +25,7 @@ const ContactPage = ({
           Email Me
         </Link>
       </div>
-      <div className="bg-paper-white relative">
+      <div className="bg-paper-white">
         <span className="absolute bottom-full left-8">
           <Bookmark color="red" title="Contact" go={go} />
         </span>

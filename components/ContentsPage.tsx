@@ -19,7 +19,7 @@ const ContentsPage = ({
 }: Props) => {
   return (
     <>
-      <div className="bg-paper-white py-10 px-16 relative">
+      <div className="bg-paper-white py-10 px-16">
         <span className="absolute bottom-full left-32">
           <Bookmark color="red" title="Contents" go={go} />
         </span>
@@ -48,7 +48,7 @@ const ContentsPage = ({
           ))
         }
       </div>
-      <div className="bg-paper-white relative">
+      <div className="bg-paper-white">
         <span className="absolute bottom-full right-32">
           <Bookmark color="red" title="Contents" go={go} />
         </span>
