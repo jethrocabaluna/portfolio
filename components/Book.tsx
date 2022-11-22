@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { NextPage } from 'next'
 import { EB_Garamond } from '@next/font/google'
@@ -21,9 +21,15 @@ import RightArrow from '../public/right-arrow.svg'
 const garamond = EB_Garamond()
 
 const Book: NextPage = () => {
+  const [isMobile, setIsMobile] = useState(false)
+  const [activeSide, setActiveSide] = useState<'left' | 'right'>('right')
   const [page, setPage] = useState(0)
   const [isForward, setIsForward] = useState(true)
   const [isAutoTurning, setIsAutoTurning] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1024)
+  }, [])
 
   const contents: ContentsPageProps['contents'] = [
     {
@@ -153,19 +159,31 @@ const Book: NextPage = () => {
     trackMouse: true,
   })
 
+  const bookWrapperClassName = clsx(
+    page % 2 === 0 ? 'left-1/2 -translate-x-1/2' : 'left-full -translate-x-12',
+    'w-full sm:w-auto absolute top-0 my-32 lg:my-12 2xl:my-24',
+    'lg:-translate-x-12 xl:translate-x-0 transition-all',
+    'scale-100 sm:scale-90 md:scale-100 lg:scale-80 xl:scale-90 2xl:scale-100',
+  )
+
+  const bookClassName = clsx(
+    garamond.className,
+    'book mx-auto w-11/12 sm:w-book-desktop',
+    'text-paper-black select-none',
+  )
+
   return (
     <>
       <div className="absolute top-2 left-1/2 -translate-x-1/2 z-50">
         <Search goToPage={goToPage} />
       </div>
-      <div className="absolute top-0 left-1/2 my-24">
-        <div {...swipeHandlers} className={`${garamond.className} book text-paper-black select-none`}>
+      <div className={bookWrapperClassName}>
+        <div {...swipeHandlers} className={bookClassName}>
           {
             pageComponents.map((BookPage, i) => {
-              // ${isForward && page === 2 ? 'z-10' : ''} ${!isForward && page === 2 ? 'z-30' : ''}`}
               const pageClassName = clsx(
-                'book__page absolute top-0 left-0 w-full h-full text-center',
-                page > i && 'flipped z-20',
+                'book__page xl:rotated absolute top-0 left-0 w-full h-full text-center will-change-transform',
+                page > i && 'flipped xl:rotated-flipped z-20',
                 page < i - 1 && '-z-10',
                 i !== 0 && i !== pageComponents.length - 1 && 'border-l border-paper-line',
                 (i === 0 ? false : isForward) && page === i && 'z-10',
@@ -179,8 +197,10 @@ const Book: NextPage = () => {
             })
           }
         </div>
+      </div>
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 lg:-left-14 xl:-left-20 lg:-translate-x-0">
         <button
-          className={`-ml-20 h-5 w-10 text-blue ${page <= 0 ? 'opacity-20' : ''}`}
+          className={`h-5 w-10 text-blue ${page <= 0 ? 'opacity-20' : ''}`}
           onClick={onPrevious}
         >
           <LeftArrow />

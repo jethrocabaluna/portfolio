@@ -5,7 +5,7 @@ const Home: NextPage = () => {
   return (
     <main>
       <div className="relative h-screen">
-        <div className="relative h-full p-24">
+        <div className="relative h-full sm:p-12 xl:p-24">
           <Book />
         </div>
       </div>

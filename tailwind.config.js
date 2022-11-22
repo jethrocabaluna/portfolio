@@ -19,8 +19,15 @@ module.exports = {
       height: {
         128: '512px',
       },
+      width: {
+        'book-desktop': '600px',
+      },
       spacing: {
         34: '8.5rem',
+      },
+      scale: {
+        80: '0.80',
+        60: '0.60',
       },
     },
   },
