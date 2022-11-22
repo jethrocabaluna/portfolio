@@ -160,7 +160,7 @@ const Book: NextPage = () => {
   })
 
   const bookWrapperClassName = clsx(
-    page % 2 === 0 ? 'left-1/2 -translate-x-1/2' : 'left-full -translate-x-12',
+    (!isMobile || page % 2 === 0) ? 'left-1/2 -translate-x-1/2' : 'left-full -translate-x-12',
     'w-full sm:w-auto absolute top-0 my-32 lg:my-12 2xl:my-24',
     'lg:-translate-x-12 xl:translate-x-0 transition-all',
     'scale-100 sm:scale-90 md:scale-100 lg:scale-80 xl:scale-90 2xl:scale-100',
@@ -198,7 +198,7 @@ const Book: NextPage = () => {
           }
         </div>
       </div>
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 lg:-left-14 xl:-left-20 lg:-translate-x-0">
+      <div className="absolute bottom-16 lg:bottom-48 left-1/2 -translate-x-1/2">
         <button
           className={`h-5 w-10 text-blue ${page <= 0 ? 'opacity-20' : ''}`}
           onClick={onPrevious}
