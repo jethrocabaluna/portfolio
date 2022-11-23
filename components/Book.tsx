@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { useWindowWidth } from '@react-hook/window-size'
 import { NextPage } from 'next'
-import { EB_Garamond } from '@next/font/google'
 import clsx from 'clsx'
 import { chunk } from 'lodash'
 import { experiences } from '@/utils/experiences'
@@ -18,8 +17,6 @@ import Search from './Search'
 import ContactPage from './ContactPage'
 import LeftArrow from '../public/left-arrow.svg'
 import RightArrow from '../public/right-arrow.svg'
-
-const garamond = EB_Garamond()
 
 const Book: NextPage = () => {
   const [isSinglePageView, setIsSinglePageView] = useState(false)
@@ -93,12 +90,12 @@ const Book: NextPage = () => {
     />,
     ...chunk(experiences, isSinglePageView ? 1 : 2).map((exp, i) => {
       const BookmarkFront = i === 0 ? (
-        <span className="absolute bottom-full left-60">
+        <span className="absolute bottom-full left-64">
           <Bookmark color="yellow" title="Experience" go={() => goToPage(3)} />
         </span>
       ) : undefined
       const BookmarkBack = i === 0 ? (
-        <span className="absolute bottom-full right-60">
+        <span className="absolute bottom-full right-64">
           <Bookmark color="yellow" title="Experience" go={() => goToPage(3)} />
         </span>
       ) : undefined
@@ -162,32 +159,37 @@ const Book: NextPage = () => {
     onSwipedLeft: onNext,
     onSwipedRight: onPrevious,
     trackMouse: true,
+    preventScrollOnSwipe: true,
   })
 
   const bookWrapperClassName = clsx(
-    'left-1/2 -translate-x-1/2',
-    'w-full sm:w-auto absolute top-0 my-32 lg:my-12 2xl:my-24',
-    'lg:-translate-x-12 xl:translate-x-0 transition-all',
-    'scale-100 sm:scale-90 md:scale-100 lg:scale-80 xl:scale-90 2xl:scale-100',
+    'w-full sm:w-auto mt-2',
+    'scale-100 lg:scale-80 xl:scale-90 2xl:scale-100',
   )
 
   const bookClassName = clsx(
-    garamond.className,
-    'book mx-auto w-11/12 sm:w-book-desktop',
-    'text-paper-black select-none',
+    'book mx-auto w-11/12 h-screen-fit sm:w-book-desktop sm:h-book-desktop',
+    'text-paper-black select-none lg:translate-x-1/2',
   )
 
   return (
     <>
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-50">
+      <div className="mx-auto my-2 w-11/12 sm:w-96 z-50">
         <Search goToPage={goToPage} isSinglePageView={isSinglePageView} />
+      </div>
+      <div className="lg:hidden flex w-11/12 sm:w-book-desktop mx-auto text-pure-white text-xs sm:text-lg">
+        <button onClick={() => goToPage(1)} className='flex-1 bg-blue py-2'>About Me</button>
+        <button onClick={() => goToPage(2)} className='flex-1 bg-red py-2'>Contents</button>
+        <button onClick={() => goToPage(3)} className='flex-1 bg-bookmark-yellow py-2'>Experience</button>
+        <button onClick={() => goToPage(8)} className='flex-1 bg-blue py-2'>Projects</button>
+        <button onClick={() => goToPage(11)} className='flex-1 bg-red py-2'>Contact</button>
       </div>
       <div className={bookWrapperClassName}>
         <div {...swipeHandlers} className={bookClassName}>
           {
             pageComponents.map((BookPage, i) => {
               const pageClassName = clsx(
-                'book__page xl:rotated absolute top-0 left-0 w-full h-full text-center will-change-transform',
+                'book__page',
                 page > i && 'flipped xl:rotated-flipped z-20',
                 page < i - 1 && '-z-10',
                 i !== 0 && i !== pageComponents.length - 1 && 'border-l border-paper-line',
@@ -203,26 +205,21 @@ const Book: NextPage = () => {
           }
         </div>
       </div>
-      <div className="absolute bottom-16 lg:bottom-48 left-1/2 -translate-x-1/2">
-        <button
-          className={`h-5 w-10 text-blue ${page <= 0 ? 'opacity-20' : ''}`}
-          onClick={onPrevious}
-        >
-          <LeftArrow />
-        </button>
-        <button
-          className={`ml-8 h-5 w-10 text-blue ${page >= pageComponents.length ? 'opacity-20' : ''}`}
-          onClick={onNext}
-        >
-          <RightArrow />
-        </button>
-      </div>
-      <div className="sm:hidden absolute flex w-11/12 top-20 left-1/2 -translate-x-1/2">
-        <button onClick={() => goToPage(1)} className='flex-1 bg-blue text-pure-white p-2 text-xs'>About Me</button>
-        <button onClick={() => goToPage(2)} className='flex-1 bg-red text-pure-white p-2 text-xs'>Contents</button>
-        <button onClick={() => goToPage(3)} className='flex-1 bg-bookmark-yellow text-pure-white p-2 text-xs'>Experience</button>
-        <button onClick={() => goToPage(8)} className='flex-1 bg-blue text-pure-white p-2 text-xs'>Projects</button>
-        <button onClick={() => goToPage(11)} className='flex-1 bg-red text-pure-white p-2 text-xs'>Contact</button>
+      <div className="h-12 relative lg:-mt-14 xl:-mt-8 2xl:-mt-0">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
+          <button
+            className={`h-10 w-10 text-blue ${page <= 0 ? 'opacity-20' : ''}`}
+            onClick={onPrevious}
+          >
+            <LeftArrow />
+          </button>
+          <button
+            className={`ml-8 h-10 w-10 text-blue ${page >= pageComponents.length - 1 ? 'opacity-20' : ''}`}
+            onClick={onNext}
+          >
+            <RightArrow />
+          </button>
+        </div>
       </div>
     </>
   )

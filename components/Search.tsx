@@ -103,7 +103,7 @@ const Search = ({
   }
 
   return (
-    <div ref={searchResultRef} className="w-96 relative">
+    <div ref={searchResultRef} className="relative">
       <input
         onChange={(e) => updateSearch(e.target.value.toLowerCase())}
         className="w-full p-2"
@@ -115,7 +115,7 @@ const Search = ({
       />
       {
         isSearchResultOpen && (
-          <div className="absolute top-full w-full left-0 bg-cover-white">
+          <div className="absolute top-full w-full left-0 bg-pure-white z-50 border border-t-0">
             {
               searchTerm.length >= 2 && <p className="p-2 font-bold">{foundPages.length ? `Found on ${foundPages.length} pages` : 'Nothing found'}</p>
             }

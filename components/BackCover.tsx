@@ -4,7 +4,7 @@ const BackCover = () => {
   return (
     <>
       <div className="bg-cover-white" />
-      <div className="bg-red" />
+      <div className="hidden sm:block bg-red" />
     </>
   )
 }

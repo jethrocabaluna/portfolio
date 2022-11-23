@@ -14,22 +14,22 @@ const IntroPage = ({
   return (
     <>
       <div className="bg-paper-white p-8 sm:py-10 sm:px-16">
-        <span className="absolute bottom-full left-2">
+        <span className="absolute bottom-full left-6">
           <Bookmark color="blue" title="About Me" go={go} />
         </span>
         <Image
-          className="my-0 mx-auto"
+          className="my-0 mx-auto pointer-events-none"
           src={mePic}
           alt="Myself"
           height={250}
         />
         <h2 className="text-2xl sm:text-4xl my-2">What I do?</h2>
         {
-          introSummaries.map((s, i) => <p key={i} className="searchable mb-1 text-lg sm:text-xl">{s}</p>)
+          introSummaries.map((s, i) => <p key={i} className="searchable sm:mb-1 text-base sm:text-xl">{s}</p>)
         }
       </div>
-      <div className="bg-paper-white">
-        <span className="absolute bottom-full right-2">
+      <div className="hidden sm:block bg-paper-white">
+        <span className="absolute bottom-full right-6">
           <Bookmark color="blue" title="About Me" go={go} />
         </span>
       </div>

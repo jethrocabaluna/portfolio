@@ -20,7 +20,7 @@ export const projects: PageContent[] = [
     link: 'https://react2d-game.herokuapp.com/',
     summary: [
       'Made this "space invaders" inspired game when I was just starting out learning React and GraphQL',
-      'This is not totally a finished game but you can play it up to third round',
+      'This is not totally a finished game and is only playable in desktop view, but you can play it up to third round',
       'Uses KeystoneJS as a CMS for adding/updating enemies, levels, etc',
       'Uses Canvas API for the animations',
     ],

@@ -22,7 +22,7 @@ const Bookmark = ({
 }: Props) => {
   const className = clsx(
     colorMap[color],
-    'hidden sm:block text-pure-white px-4 text-lg font-bold pb-4 pt-2 -mb-2',
+    'hidden lg:block text-pure-white px-4 text-lg font-bold pb-4 pt-2 -mb-2',
   )
   return <button onClick={go} className={className}>{title}</button>
 }

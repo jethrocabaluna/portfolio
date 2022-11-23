@@ -18,6 +18,8 @@ module.exports = {
     extend: {
       height: {
         128: '512px',
+        'book-desktop': '600px',
+        'screen-fit': 'calc(100vh - 150px)',
       },
       width: {
         'book-desktop': '600px',

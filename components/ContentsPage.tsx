@@ -20,7 +20,7 @@ const ContentsPage = ({
   return (
     <>
       <div className="bg-paper-white p-8 sm:py-10 sm:px-16">
-        <span className="absolute bottom-full left-32">
+        <span className="absolute bottom-full left-36">
           <Bookmark color="red" title="Contents" go={go} />
         </span>
         <h2 className="text-4xl">Content</h2>
@@ -48,8 +48,8 @@ const ContentsPage = ({
           ))
         }
       </div>
-      <div className="bg-paper-white">
-        <span className="absolute bottom-full right-32">
+      <div className="hidden sm:block bg-paper-white">
+        <span className="absolute bottom-full right-36">
           <Bookmark color="red" title="Contents" go={go} />
         </span>
       </div>

@@ -25,7 +25,7 @@ const ContactPage = ({
           Email Me
         </Link>
       </div>
-      <div className="bg-paper-white">
+      <div className="hidden sm:block bg-paper-white">
         <span className="absolute bottom-full left-8">
           <Bookmark color="red" title="Contact" go={go} />
         </span>

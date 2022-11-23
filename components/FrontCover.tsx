@@ -24,7 +24,7 @@ const FrontCover = () => {
           </Link>
         </div>
       </div>
-      <div className="bg-cover-white z-10" />
+      <div className="hidden sm:block bg-cover-white z-10" />
     </>
   )
 }
