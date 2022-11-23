@@ -11,14 +11,14 @@ const ContactPage = ({
 }: Props) => {
   return (
     <>
-      <div className="bg-paper-white py-10 px-16">
+      <div className="bg-paper-white p-8 sm:py-10 sm:px-16">
         <span className="absolute bottom-full right-8">
           <Bookmark color="red" title="Contact" go={go} />
         </span>
         <h2 className="text-4xl my-2">Get In Touch</h2>
-        <p className="mb-8 text-xl">I am casually looking for new opportunities as a full-time, part-time, or freelance software engineer.</p>
+        <p className="mb-8 text-lg sm:text-xl">I am casually looking for new opportunities as a full-time, part-time, or freelance software engineer.</p>
         <Link
-          className="py-2 px-4 border-blue border-2 bg-white text-xl"
+          className="py-2 px-4 border-blue border-2 bg-white text-lg sm:text-xl"
           href="mailto:jethrocabaluna310@gmail.com"
           target="_blank"
         >

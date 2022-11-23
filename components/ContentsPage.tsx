@@ -19,16 +19,16 @@ const ContentsPage = ({
 }: Props) => {
   return (
     <>
-      <div className="bg-paper-white py-10 px-16">
+      <div className="bg-paper-white p-8 sm:py-10 sm:px-16">
         <span className="absolute bottom-full left-32">
           <Bookmark color="red" title="Contents" go={go} />
         </span>
-        <h2 className="text-4xl my-2">Content</h2>
+        <h2 className="text-4xl">Content</h2>
         {
           contents.map(content => (
             <Fragment key={content.title}>
               <button
-                className="block text-blue mt-2 mb-1 hover:underline"
+                className="block text-blue mt-2 mb-1 hover:underline text-left"
                 onClick={content.go}
               >
                 {content.title}
@@ -36,7 +36,7 @@ const ContentsPage = ({
               {
                 content.subContents?.map(subContent => (
                   <button
-                    className="block text-blue ml-4 mb-1 hover:underline"
+                    className="block text-blue ml-4 mb-1 hover:underline text-left"
                     key={subContent.title}
                     onClick={subContent.go}
                   >

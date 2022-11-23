@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React from 'react'
 
 export type BookmarkColor = 'red' | 'blue' | 'yellow'
@@ -19,7 +20,11 @@ const Bookmark = ({
   title,
   go,
 }: Props) => {
-  return <button onClick={go} className={`${colorMap[color]} text-pure-white px-4 text-lg font-bold pb-4 pt-2 -mb-2`}>{title}</button>
+  const className = clsx(
+    colorMap[color],
+    'hidden sm:block text-pure-white px-4 text-lg font-bold pb-4 pt-2 -mb-2',
+  )
+  return <button onClick={go} className={className}>{title}</button>
 }
 
 export default Bookmark

@@ -13,7 +13,7 @@ const IntroPage = ({
 }: Props) => {
   return (
     <>
-      <div className="bg-paper-white py-10 px-16">
+      <div className="bg-paper-white p-8 sm:py-10 sm:px-16">
         <span className="absolute bottom-full left-2">
           <Bookmark color="blue" title="About Me" go={go} />
         </span>
@@ -23,9 +23,9 @@ const IntroPage = ({
           alt="Myself"
           height={250}
         />
-        <h2 className="text-4xl my-2">What I do?</h2>
+        <h2 className="text-2xl sm:text-4xl my-2">What I do?</h2>
         {
-          introSummaries.map((s, i) => <p key={i} className="searchable mb-1 text-xl">{s}</p>)
+          introSummaries.map((s, i) => <p key={i} className="searchable mb-1 text-lg sm:text-xl">{s}</p>)
         }
       </div>
       <div className="bg-paper-white">

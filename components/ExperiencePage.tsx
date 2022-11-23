@@ -26,9 +26,9 @@ type PageProps = {
 }
 
 const summarySizeMap = {
-  sm: 'text-sm',
-  base: 'text-base',
-  lg: 'text-lg',
+  sm: 'sm:text-sm',
+  base: 'sm:text-base',
+  lg: 'sm:text-lg',
 }
 
 const Page = ({
@@ -37,16 +37,16 @@ const Page = ({
   Bookmark,
 }: PageProps) => {
   return (
-    <div className="bg-paper-white py-8 px-16">
+    <div className="bg-paper-white p-8 sm:py-8 sm:px-16">
       {Bookmark}
-      <h3 className="text-lg">{title}</h3>
-      <h2 className="searchable text-3xl">{content.title}</h2>
-      {content.link ? <Link className="text-blue" href={content.link} target="_blank">{content.link}</Link> : ''}
+      <h3 className="text-base sm:text-lg">{title}</h3>
+      <h2 className="searchable text-2xl sm:text-3xl">{content.title}</h2>
+      {content.link ? <Link className="text-blue text-base" href={content.link} target="_blank">{content.link}</Link> : ''}
       {content.subtitle ? <p className="searchable text-base">{content.subtitle}</p> : ''}
       <p className="text-sm">{content.startDate}{content.endDate ? ` — ${content.endDate}` : ''}</p>
-      <ul className="list-disc text-left mt-1">
+      <ul className="list-disc text-left mt-2 sm:mt-1">
         {
-          content.summary.map((line, i) => <li key={i} className={`searchable mb-1 ${summarySizeMap[content.summarySize ?? 'lg']}`}>{line}</li>)
+          content.summary.map((line, i) => <li key={i} className={`searchable mb-2 sm:mb-1 text-xs ${summarySizeMap[content.summarySize ?? 'lg']}`}>{line}</li>)
         }
       </ul>
     </div>

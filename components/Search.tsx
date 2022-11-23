@@ -7,6 +7,7 @@ import { projects } from '@/utils/projects'
 
 type Props = {
   goToPage: (num: number) => void
+  isSinglePageView: boolean
 }
 
 type FoundPage = {
@@ -16,6 +17,7 @@ type FoundPage = {
 
 const Search = ({
   goToPage,
+  isSinglePageView,
 }: Props) => {
   const { updateSearch, searchTerm } = useSearchContext()
   const [foundPages, setFoundPages] = useState<FoundPage[]>([])
@@ -55,13 +57,14 @@ const Search = ({
       ) {
         pages.push({
           title: `${exp.subtitle} @ ${exp.title}`,
-          pageNum: Math.ceil(i / 2) + 3,
+          pageNum: (isSinglePageView ? i : Math.ceil(i / 2)) + 3,
         })
       }
     }
 
     for (let i = 0; i < projects.length; i++) {
       const project = projects[i]
+      const startingPage = isSinglePageView ? 8 : 6
       if (
         project.title.toLowerCase().includes(searchTerm)
         || project.subtitle?.toLowerCase().includes(searchTerm)
@@ -69,7 +72,7 @@ const Search = ({
       ) {
         pages.push({
           title: `Personal project — ${project.title}`,
-          pageNum: Math.ceil(i / 2) + 6,
+          pageNum: (isSinglePageView ? i : Math.ceil(i / 2)) + startingPage,
         })
       }
     }
