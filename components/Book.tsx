@@ -187,7 +187,7 @@ const Book: NextPage = () => {
 
   const bookWrapperClassName = clsx(
     isNil(isSafari) && 'hidden',
-    isSafari && !isSinglePageView ? 'mt-8' : 'mt-2',
+    isSafari && !isSinglePageView ? 'mt-8 2xl:mt-16' : 'mt-2',
     'w-full sm:w-auto',
     'scale-100 lg:scale-80 xl:scale-90 2xl:scale-100',
   )
@@ -232,7 +232,7 @@ const Book: NextPage = () => {
           }
         </div>
       </div>
-      <div className={`h-12 relative lg:-mt-14 ${isSafari ? 'xl:-mt-4' : 'xl:-mt-8 2xl:-mt-0'}`}>
+      <div className={`h-12 relative lg:-mt-14 ${isSafari ? 'xl:-mt-4 2xl:mt-1' : 'xl:-mt-8 2xl:-mt-0'}`}>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
           <button
             className={`h-10 w-10 text-blue ${page <= 0 ? 'opacity-20' : ''}`}
