@@ -3,7 +3,7 @@ import { useSwipeable } from 'react-swipeable'
 import { useWindowWidth } from '@react-hook/window-size'
 import { NextPage } from 'next'
 import clsx from 'clsx'
-import { chunk } from 'lodash'
+import { chunk, isNil } from 'lodash'
 import { experiences } from '@/utils/experiences'
 import { projects } from '@/utils/projects'
 import FrontCover from './FrontCover'
@@ -22,8 +22,30 @@ const Book: NextPage = () => {
   const [isSinglePageView, setIsSinglePageView] = useState(false)
   const [page, setPage] = useState(0)
   const [isForward, setIsForward] = useState(true)
+  const [isSafari, setIsSafari] = useState<boolean>()
   const [isAutoTurning, setIsAutoTurning] = useState(false)
   const windowWidth = useWindowWidth()
+
+  const downHandler = ({ key }: KeyboardEvent) => {
+    if (key === 'ArrowRight') {
+      onNext()
+    }
+    if (key === 'ArrowLeft') {
+      onPrevious()
+    }
+  }
+
+  useEffect(() => {
+    setIsSafari(/^((?!chrome|android).)*safari/i.test(window.navigator.userAgent))
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener("keydown", downHandler)
+
+    return () => {
+      window.removeEventListener("keydown", downHandler)
+    }
+  }, [page])
 
   useEffect(() => {
     const newValue = windowWidth < 1024
@@ -128,6 +150,7 @@ const Book: NextPage = () => {
     setIsForward(false)
     setPage(Math.max(0, page - 1))
   }
+
   const onNext = () => {
     if (isAutoTurning) return
     setIsForward(true)
@@ -163,7 +186,9 @@ const Book: NextPage = () => {
   })
 
   const bookWrapperClassName = clsx(
-    'w-full sm:w-auto mt-2',
+    isNil(isSafari) && 'hidden',
+    isSafari && !isSinglePageView ? 'mt-8' : 'mt-2',
+    'w-full sm:w-auto',
     'scale-100 lg:scale-80 xl:scale-90 2xl:scale-100',
   )
 
@@ -189,8 +214,10 @@ const Book: NextPage = () => {
           {
             pageComponents.map((BookPage, i) => {
               const pageClassName = clsx(
-                'book__page',
-                page > i && 'flipped xl:rotated-flipped z-20',
+                isSafari && 'book__page--safari',
+                !isSafari && 'book__page',
+                page > i && 'flipped z-20',
+                page > i && !isSafari && 'xl:rotated-flipped',
                 page < i - 1 && '-z-10',
                 i !== 0 && i !== pageComponents.length - 1 && 'border-l border-paper-line',
                 (i === 0 ? false : isForward) && page === i && 'z-10',
@@ -205,7 +232,7 @@ const Book: NextPage = () => {
           }
         </div>
       </div>
-      <div className="h-12 relative lg:-mt-14 xl:-mt-8 2xl:-mt-0">
+      <div className={`h-12 relative lg:-mt-14 ${isSafari ? 'xl:-mt-4' : 'xl:-mt-8 2xl:-mt-0'}`}>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
           <button
             className={`h-10 w-10 text-blue ${page <= 0 ? 'opacity-20' : ''}`}

@@ -7,7 +7,7 @@ import Codepen from '../public/codepen.svg'
 const FrontCover = () => {
   return (
     <>
-      <div className="bg-blue relative border-l-red border-l-4 border-b-paper-white border-b-4 z-20">
+      <div className="bg-blue border-l-red border-l-4 border-b-paper-white border-b-4">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 w-80">
           <h1 className="text-yellow text-6xl mb-4">Jethro Cabaluna</h1>
           <p className="text-white"><strong>Software Engineer</strong></p>
@@ -24,7 +24,7 @@ const FrontCover = () => {
           </Link>
         </div>
       </div>
-      <div className="hidden sm:block bg-cover-white z-10" />
+      <div className="hidden sm:block bg-cover-white" />
     </>
   )
 }

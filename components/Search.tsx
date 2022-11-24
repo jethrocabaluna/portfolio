@@ -102,6 +102,8 @@ const Search = ({
     goToPage(pageNum)
   }
 
+  const pageWord = foundPages.length > 1 ? 'pages' : 'page'
+
   return (
     <div ref={searchResultRef} className="relative">
       <input
@@ -117,7 +119,11 @@ const Search = ({
         isSearchResultOpen && (
           <div className="absolute top-full w-full left-0 bg-pure-white z-50 border border-t-0">
             {
-              searchTerm.length >= 2 && <p className="p-2 font-bold">{foundPages.length ? `Found on ${foundPages.length} pages` : 'Nothing found'}</p>
+              searchTerm.length >= 2 && (
+                <p className="p-2 font-bold">
+                  {foundPages.length ? `Found on ${foundPages.length} ${pageWord}` : 'Nothing found'}
+                </p>
+              )
             }
             {
               foundPages.map(p => (
