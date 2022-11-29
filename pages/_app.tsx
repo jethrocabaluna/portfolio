@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import { Analytics } from '@vercel/analytics/react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { SearchProvider } from '@/contexts/SearchContext'
@@ -28,6 +29,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </Head>
         <Component {...pageProps} />
       </SearchProvider>
+      <Analytics />
     </>
   )
 }
